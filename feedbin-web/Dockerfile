@@ -1,17 +1,15 @@
-FROM alpine:3.13
+FROM alpine:3
 
 ARG FEEDBIN_URL
 
 WORKDIR /app
 
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     linux-headers \
     tzdata \
     git \
     ruby-dev \
-    ruby-etc \
     ruby-bigdecimal \
-    ruby-io-console \
     build-base \
     imagemagick-dev \
     imagemagick-libs \
@@ -24,9 +22,13 @@ RUN apk add --no-cache \
     postgresql-client \
     libpq \
     postgresql-dev \
-    && gem install 'etc:1.2.0' 'idn-ruby:0.1.0' \
+    yaml-dev \
+    vips \
+    && gem install 'etc:1.4.6' 'idn-ruby:0.1.5' \
     && git clone https://github.com/feedbin/feedbin.git /app \
     && gem install bundler \
+    && bundle update --bundler \
+    && bundle lock --add-platform x86_64-linux-musl \
     && bundle install \
     && bundle exec rake assets:precompile
 

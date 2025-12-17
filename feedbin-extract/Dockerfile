@@ -1,11 +1,11 @@
-FROM alpine:3.13
+FROM alpine:3
 
 ARG EXTRACT_USER
 ARG EXTRACT_SECRET
 
 WORKDIR /app
 
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     git \
     nodejs \
     npm \
