@@ -1,3 +1,4 @@
 caddy/Caddyfile
 .env
 docker-compose.yml
+.vscode/settings.json
