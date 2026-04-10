@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM ruby:3.4.4-alpine3.21
 
 ARG FEEDBIN_URL
 
@@ -8,8 +8,6 @@ RUN apk update && apk add --no-cache \
     linux-headers \
     tzdata \
     git \
-    ruby-dev \
-    ruby-bigdecimal \
     build-base \
     imagemagick-dev \
     imagemagick-libs \
